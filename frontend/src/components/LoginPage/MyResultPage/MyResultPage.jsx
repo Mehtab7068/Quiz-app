@@ -2,7 +2,8 @@ import React, { useEffect, useMemo, useState, useCallback } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { resultStyles } from "../../assets/dummyStyles";
+// import { resultStyles } from "../../assets/dummyStyles";
+import { resultStyles } from "../../../assets/dummyStyles";
 
 const Badge = ({ percent }) => {
   if (percent >= 85)
