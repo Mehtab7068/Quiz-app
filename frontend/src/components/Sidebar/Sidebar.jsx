@@ -28,7 +28,8 @@ import {
 import questionsData from "../Sidebar/dummydata";
 import { sidebarStyles } from "../../assets/dummyStyles";
 
-const API_BASE = "http://localhost:5000";
+// const API_BASE = "http://localhost:5000";
+const API_BASE = "https://quiz-app-ma8w.onrender.com";
 
 const Sidebar = () => {
   const [selectedTech, setSelectedTech] = useState(null);
@@ -287,7 +288,7 @@ const Sidebar = () => {
           "Content-Type": "application/json",
           ...getAuthHeader(),
         },
-        timeout: 10000,
+        timeout: 60000,
       });
 
       if (res.data && res.data.success) {

@@ -168,11 +168,10 @@ export default function MyResultPage({ apiBase = "https://quiz-app-ma8w.onrender
               {/* All button */}
               <button
                 onClick={() => handleSelectTech("all")}
-                className={`${resultStyles.filterButton} ${
-                  selectedTechnology === "all"
+                className={`${resultStyles.filterButton} ${selectedTechnology === "all"
                     ? resultStyles.filterButtonActive
                     : resultStyles.filterButtonInactive
-                }`}
+                  }`}
                 aria-pressed={selectedTechnology === "all"}
               >
                 All
@@ -183,11 +182,10 @@ export default function MyResultPage({ apiBase = "https://quiz-app-ma8w.onrender
                 <button
                   key={tech}
                   onClick={() => handleSelectTech(tech)}
-                  className={`${resultStyles.filterButton} ${
-                    selectedTechnology === tech
+                  className={`${resultStyles.filterButton} ${selectedTechnology === tech
                       ? resultStyles.filterButtonActive
                       : resultStyles.filterButtonInactive
-                  }`}
+                    }`}
                   aria-pressed={selectedTechnology === tech}
                 >
                   {tech}
@@ -204,11 +202,10 @@ export default function MyResultPage({ apiBase = "https://quiz-app-ma8w.onrender
                   <button
                     key={`fallback-${tech}`}
                     onClick={() => handleSelectTech(tech)}
-                    className={`${resultStyles.filterButton} ${
-                      selectedTechnology === tech
+                    className={`${resultStyles.filterButton} ${selectedTechnology === tech
                         ? resultStyles.filterButtonActive
                         : resultStyles.filterButtonInactive
-                    }`}
+                      }`}
                     aria-pressed={selectedTechnology === tech}
                   >
                     {tech}
@@ -263,12 +260,16 @@ function StripCard({ item }) {
     : 0;
 
   const getLevel = (it) => {
-    const id = (it.id || "").toString().toLowerCase();
+    // Use the explicit backend level property if it exists
+    const backendLevel = (it.level || "").toString().toLowerCase();
+    if (backendLevel === "basic") return { letter: "B", style: resultStyles.levelBasic };
+    if (backendLevel === "intermediate") return { letter: "I", style: resultStyles.levelIntermediate };
+    if (backendLevel === "advanced") return { letter: "A", style: resultStyles.levelAdvanced };
+
+    // Fallback to your title parsing if level isn't provided
     const title = (it.title || "").toString().toLowerCase();
-    if (id.includes("basic") || title.includes(" basic"))
-      return { letter: "B", style: resultStyles.levelBasic };
-    if (id.includes("intermediate") || title.includes(" intermediate"))
-      return { letter: "I", style: resultStyles.levelIntermediate };
+    if (title.includes("basic")) return { letter: "B", style: resultStyles.levelBasic };
+    if (title.includes("intermediate")) return { letter: "I", style: resultStyles.levelIntermediate };
     return { letter: "A", style: resultStyles.levelAdvanced };
   };
 
