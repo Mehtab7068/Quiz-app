@@ -37,7 +37,7 @@ export default function LoginPage({ onLoginSuccess = null }) {
     setLoading(true);
     try {
       const payload = { email: email.trim().toLowerCase(), password };
-      const resp = await fetch(`${API_BASE}/api/auth/login`, {
+      const resp = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
